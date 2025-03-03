@@ -4,7 +4,7 @@ import { PostsRepository, PostUpdateInput } from "../postsRepository";
 
 
 export class PrismaPostsRepository implements PostsRepository {
-        async create(data: Prisma.PostCreateInput) {
+        async create(data: Prisma.PostUncheckedCreateInput) {
 
             const posts = await prisma.post.create({
                 data
@@ -47,11 +47,7 @@ export class PrismaPostsRepository implements PostsRepository {
         async update(postId: string, data: PostUpdateInput): Promise<Post | null> {
                 const post = await prisma.post.update({
                     where: { id : postId },  
-                    data: {
-                        title: data.title,
-                        content: data.content,
-                        created_at: data.created_at
-                    }
+                    data
                 })
                 return post
         }

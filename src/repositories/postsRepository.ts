@@ -3,11 +3,10 @@ import { Prisma, Post } from "@prisma/client";
 export interface PostUpdateInput{
     title?: string
     content?: string
-    created_at?: Date
 }
 
 export interface PostsRepository {
-    create(data: Prisma.PostCreateInput): Promise<Post>
+    create(data: Prisma.PostUncheckedCreateInput): Promise<Post>
 
     getById(postId: string):Promise<Post | null>
     list(): Promise<Post[]>
